@@ -9,15 +9,13 @@ export default function Metrics() {
     </>)
 }
 
-export const geServerSideProps = withSSRAuth(async (ctx) => {
+export const getServerSideProps = withSSRAuth(async (ctx) => {
   const apiClient = setupAPIClient(ctx)
   const response = await apiClient.get('/me')
-
-
-
   return {
-    props: {
-
-    }
+    props: {}
   }
+}, {
+  permissions: ['metrics.list'],
+  roles: ['administrator'],
 })
